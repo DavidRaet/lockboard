@@ -1,0 +1,2 @@
+# Lockboard
+Lockboard is a minimalist personal dashboard designed to help individuals lock in—a clean, aesthetic space that centers focus and self-awareness. It combines essential widgets like a clock, weather, tasks, and a focus timer into a calm, distraction-free interface that reflects your rhythm and mindset.
