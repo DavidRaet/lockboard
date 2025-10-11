@@ -1,0 +1,35 @@
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr; 
+  gap: 2rem;
+  flex: 1; 
+  background-color: rgb(255, 255, 255);
+}
+
+.qol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: rgb(255, 255, 255);
+}
+
+.productivity {
+  background-color: rgb(255, 255, 255);
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr; /* Stack vertically */
+  }
+}
