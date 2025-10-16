@@ -1,35 +1,26 @@
 import styles from './Clock.module.css'
-
+import { useState, useEffect } from 'react'
+import { formatTime } from '../../utils/handleClock'
+import { formatDate } from '../../utils/handleClock'
 const Clock = () => {
-    const hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    const [time, setTime] = useState(new Date())
+    const formattedTime = formatTime(time)
+    const formattedDate = formatDate(time)
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setTime(new Date())
+        }, 1000)
+        return () => clearInterval(intervalId)
+    }, [])
+    
     return (
-        <div className={styles.clockDial}>
-            <div className={styles.point}></div>
-            {hours.map((_, i) => (
-                <div key={i} className={`${styles.hour} ${styles[`hour${i + 1}`]} `}>
-                    {i + 1}
-                </div>
-            ))}
-            <div  className={styles.minuteHandWrapper}>
-                <div className={styles.minuteHand}>
-                    <div className={styles.hand}></div>
-                    <div className={styles.arrow}>V</div>
-                </div>
+        <div className={styles.clockContainer}>
+            <div className={styles.timeDisplay}>
+                {formattedTime}
             </div>
-
-            <div className={styles.hourHandWrapper}>
-                <div className={styles.hourHand}>
-                    <div className={styles.otherHand}></div>
-                    <div className={styles.otherArrow}>V</div>
-                </div>
+            <div className={styles.dateDisplay}>
+                {formattedDate}
             </div>
-
-            <div className={styles.secondHandWrapper}>
-                <div className={styles.secondHand}>
-                    <div className={styles.singleHand}></div>
-                </div>
-            </div>
-            
         </div>
     )
 }

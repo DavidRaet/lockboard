@@ -6,8 +6,8 @@
 
 **Core Features:**
 
-- Header component displaying user name (passed via props)
-- Weather widget using useState to display mock weather data
+- Header component displaying user name (passed via props) O
+- Weather widget using useState to display mock weather data 
 - Task counter component tracking completed tasks (useState)
 - Clock component updating every second (useEffect)
 - Theme toggle (light/dark mode) using useContext
