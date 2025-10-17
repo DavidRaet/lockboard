@@ -1,0 +1,23 @@
+:root {
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --primary-color: #3b82f6;
+  --primary-color-hover: #2563eb;
+  --input-bg: #f9fafb;
+  --input-bg-hover: #ffffff;
+  --secondary-bg: #f3f4f6;
+}
+
+[data-theme="dark"] {
+  --card-bg: #1f2937;
+  --border-color: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --primary-color: #60a5fa;
+  --primary-color-hover: #3b82f6;
+  --input-bg: #374151;
+  --input-bg-hover: #4b5563;
+  --secondary-bg: #374151;
+}

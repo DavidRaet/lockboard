@@ -6,31 +6,52 @@ import { formatWeather, fetchWeatherDataByCity } from "../../utils/weatherAPI"
 
 const WeatherWidget = ( ) => {
     const cities = ['Poughkeepsie', 'New York', 'Tokyo', 'Nagoya']
-    const [weather, setWeather] = useState({})
-    const [selectedCity, setSelectedCity] = useState('Poughkeepsie')
+    const [weather, setWeather] = useState(null)
+    const [selectedCity, setSelectedCity] = useState('Nagoya')
     const [units, setUnits] = useState('metric')
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
 
-    const weatherData = fetchWeatherDataByCity(selectedCity)
-    console.log(weatherData)
+    useEffect(() => {
+        const fetchWeather = async () => {
+        try {
+            setLoading(true)
+            setError(null)
+            const data = await fetchWeatherDataByCity(selectedCity, units)
+            setWeather(data)
+            // console.log('Running data', data)
+        } catch (err){
+            console.error('Failed to fetch weather', err.message)
+            setError(err.message)
+        } finally {
+            setLoading(false)
+        }
+    }
+    fetchWeather()
+    }, [selectedCity, units])
 
+    if (loading) return <div>Loading...</div>
+    if (error) return <div className={styles.error}>Error..</div>
+    if (!weather) return null 
+
+    console.log('Weather data', weather)
+    const formatted = formatWeather(weather)
+
+    
     return (
         <div className={styles.weatherWidget}>
-            {/* {loading && <div>Loading weather...</div> }
-            {error && <div>Error:{error}</div>}
             <div className={styles.header}>
             <h3 className={styles.name}>{weather.name}</h3>
-            <h3>{formats.formattedDate}</h3>                
+            <h3>{formatted.date}</h3>                
             </div>
             <MiniDayIcon
-            day={formats.day}
-            icon={weather.icon}
-            temp_min={weather.daily.temp.max}
-            temp_max={weather.daily.temp.min}
+            day={formatted.day}
+            icon={formatted.iconUrl}
+            temp_min={formatted.temp_min}
+            temp_max={formatted.temp_max}
             />
-            <p className={styles.description}>Today we have: {weather.weather[0].description}</p>
+            <p className={styles.description}>Today we have: {formatted.description}</p>
             <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)}>
                 {cities.map(city => (
                     <option key={city} value={city}>
@@ -40,7 +61,7 @@ const WeatherWidget = ( ) => {
             </select>
             <button onClick={() => setUnits(units === 'metric' ? 'imperial' : 'metric') }>
                 {units === 'metric' ? '°C' : '°F'}
-            </button> */}
+            </button>
         </div>
     )
 }
