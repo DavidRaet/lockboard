@@ -32,15 +32,15 @@ const WeatherWidget = ( ) => {
     }, [selectedCity, units])
 
     if (loading) return <div>Loading...</div>
-    if (error) return <div className={styles.error}>Error..</div>
+    if (error) return <div className={styles.error}>Error loading weather...</div>
     if (!weather) return null 
 
     console.log('Weather data', weather)
     const formatted = formatWeather(weather)
 
-    
+        
     return (
-        <div className={styles.weatherWidget}>
+        <div key={selectedCity} className={styles.weatherWidget}>
             <div className={styles.header}>
             <h3 className={styles.name}>{weather.name}</h3>
             <h3>{formatted.date}</h3>                
