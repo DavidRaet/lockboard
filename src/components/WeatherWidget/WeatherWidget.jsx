@@ -52,6 +52,7 @@ const WeatherWidget = ( ) => {
             temp_max={formatted.temp_max}
             />
             <p className={styles.description}>Today we have: {formatted.description}</p>
+            <div className={styles.controls}>
             <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)}>
                 {cities.map(city => (
                     <option key={city} value={city}>
@@ -62,6 +63,7 @@ const WeatherWidget = ( ) => {
             <button onClick={() => setUnits(units === 'metric' ? 'imperial' : 'metric') }>
                 {units === 'metric' ? '°C' : '°F'}
             </button>
+            </div>
         </div>
     )
 }

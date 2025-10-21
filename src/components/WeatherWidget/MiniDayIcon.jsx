@@ -5,8 +5,8 @@ const MiniDayIcon = ({day, icon: iconURL, temp_min, temp_max}) => {
         <div className={styles.miniIcon}>
             <p>{day}</p>
             <img src={iconURL} alt="Weather Icon"/>
-            <p>{temp_min}</p>
-            <p>{temp_max}</p>
+            <p>Low: {temp_min}</p>
+            <p>High: {temp_max}</p>
         </div>
     )
 
