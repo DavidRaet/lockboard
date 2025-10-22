@@ -24,14 +24,10 @@
   
 }
 
-.productivity {
-
-}
-
 
 /* Mobile */
 @media (max-width: 768px) {
   .gridContainer {
-    grid-template-columns: 1fr; /* Stack vertically */
+    grid-template-columns: 1fr; 
   }
 }

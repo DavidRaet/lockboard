@@ -2,7 +2,7 @@ import styles from './TaskCounter.module.css'
 import { useState } from 'react'
 import TaskModal from './TaskModal'
 
-const TaskCounter = ( ) => {
+const TaskCounter = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [editingTask, setEditingTask] = useState(null)
     const [tasks, setTasks] = useState([{id: 1, name: 'learning', status: 'not-started'}])
@@ -51,8 +51,13 @@ const TaskCounter = ( ) => {
                     setEditingTask(null)
                     setIsModalOpen(true)
                 }}>+ Add Task</button>
+
             </div>
-            
+                <div className={styles.taskCategories}>
+                    <span>Name</span>
+                    <span>Status</span>
+                    <span>Delete Task</span>
+                </div>            
             <TaskModal
             isOpen={isModalOpen}
             onClose={() => {
@@ -64,10 +69,6 @@ const TaskCounter = ( ) => {
             />
             
             <div className={styles.taskList}>
-                <div className={styles.taskHeader}>
-                    <span>Name</span>
-                    <span>Status</span>
-            </div>
             { tasks.length === 0 ? 
             <div className={styles.emptyState} >No tasks yet... Click + Add Task to get started!</div> 
             :

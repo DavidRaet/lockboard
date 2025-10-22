@@ -41,10 +41,10 @@ const TaskModal = ({isOpen, onClose, onSubmit, task}) => {
     return (
     <div className={styles.modalOverlay} onClick={onClose}>
         <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <h2>Add New Task</h2>
-            <p>Form will go here</p>
-            <button onClick={onClose}>Close</button>
-
+            <div className={styles.modalHeader}>
+                <h2>{task ? 'Edit Task' : 'Add New Task'}</h2>
+                <button className={styles.closeButton} onClick={onClose}>×</button>
+            </div>
         <form onSubmit={handleSubmit}>
         <input 
         type="text" 

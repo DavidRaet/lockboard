@@ -1,10 +1,10 @@
 import styles from './Clock.module.css'
 import { useState, useEffect } from 'react'
-import { formatTime } from '../../utils/handleClock'
+import { formatClock } from '../../utils/handleClock'
 import { formatDate } from '../../utils/handleClock'
 const Clock = () => {
     const [time, setTime] = useState(new Date())
-    const formattedTime = formatTime(time)
+    const formattedTime = formatClock(time)
     const formattedDate = formatDate(time)
     useEffect(() => {
         const intervalId = setInterval(() => {
