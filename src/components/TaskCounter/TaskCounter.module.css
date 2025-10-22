@@ -46,6 +46,11 @@
     transform: scale(0.85);
 }
 
+.addButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 
 .taskHeader {
     grid-template-columns: 1fr 150px;

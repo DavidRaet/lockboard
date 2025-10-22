@@ -32,25 +32,21 @@ const TaskCounter = () => {
         setIsModalOpen(false)
     }
  
-    const formatStatus = (status) => {
-        switch (status) {
-            case 'completed':
-                return '✅ Completed' 
-            case 'in-progress':
-                return '🟡 In Progress'
-            default: 
-                return '❌ Not Started'
-        }
-    }
+
 
     return (
         <div className={styles.taskCounter}>
             <div className={styles.header}>
                 <h1>Tasks</h1>
-                <button className={styles.addButton} onClick={() => {
+                <button 
+                className={styles.addButton} 
+                onClick={() => {
                     setEditingTask(null)
                     setIsModalOpen(true)
-                }}>+ Add Task</button>
+                }}
+                disabled={tasks.length >= 3}
+                title={tasks.length >= 3 ? "Maximum 3 tasks allowed" : "Add a new task"}
+                >+ Add Task</button>
 
             </div>
                 <div className={styles.taskCategories}>
