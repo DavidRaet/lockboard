@@ -1,9 +1,9 @@
 import styles from './TaskModal.module.css'
 import { useState, useEffect } from 'react'
 
-const TaskModal = ({isOpen, onClose, onSubmit}) => {
-    const [taskName, setTaskName] = useState('')
-    const [taskStatus, setTaskStatus] = useState('not-started')
+const TaskModal = ({isOpen, onClose, onSubmit, task}) => {
+    const [taskName, setTaskName] = useState(task?.name || '')
+    const [taskStatus, setTaskStatus] = useState(task?.status || 'not-started')
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -30,6 +30,11 @@ const TaskModal = ({isOpen, onClose, onSubmit}) => {
         return () => document.removeEventListener('keydown', handleEscape)
     },[isOpen, onClose])
 
+    useEffect(() => {
+        setTaskName(task ? task.name : '')
+        setTaskStatus(task ? task.status : 'not-started')
+    }, [task])
+
 
     if (!isOpen) return null 
 
@@ -55,7 +60,7 @@ const TaskModal = ({isOpen, onClose, onSubmit}) => {
             <option value="in-progress">🟡 In Progress</option>
             <option value="completed">✅ Completed</option>
         </select>
-        <button type='submit'>Add Task</button>
+        <button type='submit'>{task ? 'Edit Task' : 'Add Task'}</button>
         </form>
         </div>
     </div>

@@ -4,6 +4,7 @@ import TaskModal from './TaskModal'
 
 const TaskCounter = ( ) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [editingTask, setEditingTask] = useState(null)
     const [tasks, setTasks] = useState([{id: 1, name: 'learning', status: 'not-started'}])
     const handleAddTask = (taskData) => {
         const newTask = 
@@ -15,6 +16,22 @@ const TaskCounter = ( ) => {
         console.log("Task successfully added!")
     }
 
+    const handleStatusChange = (taskId, newStatus) => {
+        setTasks(tasks.map((task) => task.id === taskId ? {...task, status: newStatus} : task))
+    }
+
+    const handleDeleteTask = (taskId) => {
+        const newTasksArray = tasks.filter(task => task.id !== taskId)
+        setTasks(newTasksArray)
+    }
+
+    const handleEditTask = (taskData) => {
+        const newTasks = tasks.map((task) => editingTask.id === task.id ? {...task, ...taskData} : task) 
+        setTasks(newTasks)
+        setEditingTask(null)
+        setIsModalOpen(false)
+    }
+ 
     const formatStatus = (status) => {
         switch (status) {
             case 'completed':
@@ -30,13 +47,20 @@ const TaskCounter = ( ) => {
         <div className={styles.taskCounter}>
             <div className={styles.header}>
                 <h1>Tasks</h1>
-                <button className={styles.addButton} onClick={() => setIsModalOpen(true)}>+ Add Task</button>
+                <button className={styles.addButton} onClick={() => {
+                    setEditingTask(null)
+                    setIsModalOpen(true)
+                }}>+ Add Task</button>
             </div>
             
             <TaskModal
             isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            onSubmit={handleAddTask}
+            onClose={() => {
+                setIsModalOpen(false) 
+                setEditingTask(null)
+            }}
+            onSubmit={editingTask ? handleEditTask : handleAddTask}
+            task={editingTask}
             />
             
             <div className={styles.taskList}>
@@ -49,8 +73,16 @@ const TaskCounter = ( ) => {
             :
             tasks.map((task) => (
                 <div key={task.id} className={styles.taskRow}>
-                    <span>{task.name}</span>
-                    <span>{formatStatus(task.status)}</span>
+                    <span style={{cursor: 'pointer'}} onClick={() => {
+                        setEditingTask(task)
+                        setIsModalOpen(true)
+                    }} >{task.name}</span>
+                    <select value={task.status} onChange={(e) => handleStatusChange(task.id, e.target.value)} >
+                        <option value='completed'>✅ Completed</option>
+                        <option value='in-progress'>🟡 In Progress</option>
+                        <option value='not-started'>❌ Not Started</option>
+                    </select>
+                    <button className={styles.deleteButton} onClick={() => handleDeleteTask(task.id)} aria-label='Delete task' >×</button>
                 </div>
             ))}
             </div>

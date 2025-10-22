@@ -1,13 +1,27 @@
 .taskCounter {
-
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(204, 222, 235, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
 }
 
 .header {
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color, #000000);
 }
 
 .addButton {
-
+    background: linear-gradient(135deg, #888888 0%, #d4d4d4 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 
 .taskList {
@@ -15,5 +29,23 @@
 }
 
 .taskHeader {
+    grid-template-columns: 1fr 150px;
+}
 
+.taskRow {
+    grid-template-columns: 1fr 150px;
+}
+
+.deleteButton {
+    opacity: 0;
+    transition: opacity 0.2s;
+    border: none;
+    background: transparent;
+    color: #dc2626;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.taskRow:hover .deleteButton{
+    opacity: 1;
 }
