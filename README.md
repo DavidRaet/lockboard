@@ -150,6 +150,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📬 Contact
 
-**David** — [Your GitHub](https://github.com/yourusername)
+**David** — [DavidRaet](https://github.com/DavidRaet)
 
 ⭐ Star this repo if Lockboard helps you lock in!
