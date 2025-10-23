@@ -22,7 +22,7 @@
 
 ## 🖼️ Demo
 
-<img src='https://i.imgur.com/0lrSwMY.gif' title='Video Walkthrough' width='' alt='Lockboard Walkthrough' />
+<img src='https://i.imgur.com/ymEwNbo.gif' title='Video Walkthrough' width='' alt='Lockboard Walkthrough' />
 
 ---
 
@@ -85,7 +85,7 @@
 - Shows full date with day of week
 
 ### Weather Widget
-- Enter your city name
+- Select from city options: Tokyo, Nagoya, New York, Poughkeepsie
 - Toggle between Celsius/Fahrenheit
 - Updates with current conditions and temperature range
 
